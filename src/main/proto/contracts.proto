@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+option java_multiple_files = true;
+option java_package = "dev.ivanov.grid.proto";
+option java_outer_classname = "GridProto";
+
+//сервис основной логики распределения
+service TaskService {
+
+  // получение задачи
+  rpc GetTask(google.protobuf.Empty) returns (TaskResponse) {}
+
+  // получение подзадачи
+  rpc GetSubtask(SubtaskRequest) returns (SubtaskResponse) {}
+
+  // отдача результата
+  rpc PostSubtaskResult(SubtaskResultRequest) returns (google.protobuf.Empty) {}
+  
+  // создание задачи
+  rpc PostNewTask(NewTaskRequest) returns (google.protobuf.Empty) {}
+
+}
+
+// создание задачи
+message NewTaskRequest {
+  bytes jar = 1;
+  string data = 2;
+}
+
+//ответ с информацией о задаче - кодом для выполнения и номером для запроса подзадач
+message TaskResponse {
+  bytes jar = 1;
+  string data = 2;
+}
+
+
+//запрос подзадачи для вычисления, по номеру задачи
+message SubtaskRequest {
+  string task_id = 1;
+}
+
+//ответ с подзадачей
+message SubtaskResponse {
+  string subtask = 1;
+}
+
+// результат подзадачи
+message SubtaskResultRequest {
+  string task_id = 1;
+  string subtask_id = 2;
+  string result = 3;
+}
+
+
+
+
+
