@@ -20,7 +20,16 @@ service TaskService {
   
   // создание задачи
   rpc PostNewTask(NewTaskRequest) returns (google.protobuf.Empty) {}
+}
 
+// нужен для отправки конечного результата
+service ResultService {
+  // отправка конечного результата
+  rpc PostTaskResult(TaskResult) returns (google.protobuf.Empty) {}
+}
+
+message TaskResult {
+  string result = 1;
 }
 
 // создание задачи
@@ -45,6 +54,8 @@ message SubtaskRequest {
 message SubtaskResponse {
   string subtask = 1;
 }
+
+
 
 // результат подзадачи
 message SubtaskResultRequest {
