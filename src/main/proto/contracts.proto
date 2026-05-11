@@ -61,8 +61,6 @@ message SubtaskResponse {
   string subtask = 1;
 }
 
-
-
 // результат подзадачи
 message SubtaskResultRequest {
   string task_id = 1;
