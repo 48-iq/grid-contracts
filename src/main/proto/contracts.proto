@@ -48,6 +48,7 @@ message NewTaskResponse {
 message TaskResponse {
   bytes jar = 1;
   string data = 2;
+  string task_id = 3;
 }
 
 
@@ -59,6 +60,7 @@ message SubtaskRequest {
 //ответ с подзадачей
 message SubtaskResponse {
   string subtask = 1;
+  string subtask_id = 2;
 }
 
 // результат подзадачи
